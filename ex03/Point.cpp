@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Point.h"
+#include "Point.hpp"
 
 Point::Point() {
 //	std::cout << "Default constructor called" << std::endl;

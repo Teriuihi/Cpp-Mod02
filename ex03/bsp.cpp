@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "Point.hpp"
 
 bool pointOnLine(Point const loc, Point const p1, Point const p2) {
 	if (loc == p1 || loc == p2)
@@ -23,6 +23,7 @@ float pointInside(Point const loc, Point const p1, Point const p2)
 			(loc.getYFloat() - p2.getYFloat());
 }
 
+//TODO VERIFY THIS PLS TY
 bool bsp( Point const a, Point const b, Point const c, Point const point) {
 	float A1 = pointInside(point, a, b);
 	float A2 = pointInside(point, b, c);

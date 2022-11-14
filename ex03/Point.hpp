@@ -1,7 +1,7 @@
-#ifndef POINT_H
-#define POINT_H
+#ifndef POINT_HPP
+#define POINT_HPP
 
-#include "Fixed.h"
+#include "Fixed.hpp"
 class Point {
 private:
 	Fixed const x;

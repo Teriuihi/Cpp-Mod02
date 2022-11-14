@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "Fixed.h"
+#include "Fixed.hpp"
 
 Fixed::Fixed() : val(0) {
 	std::cout << "Default constructor called" << std::endl;

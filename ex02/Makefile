@@ -1,18 +1,23 @@
 NAME=ex02
-CC=gcc
+CC=g++
 CFLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -f
 
 FILES=main.cpp Fixed.cpp
-FILES_OBJ=$(FILES:%.cpp=%.o)
+HEADERS=Fixed.hpp
+
+OBJ=$(FILES:%.cpp=%.o)
+
+%.o: %.cpp $(HEADERS)
+	$(CC) $(FLAGS) -c $< -o $(<:.cpp=.o)
+
+$(NAME): $(OBJ) $(HEADERS)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
-$(NAME): $(FILES_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(FILES_OBJ) -lstdc++
-
 clean:
-	$(RM) $(FILES_OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -1,7 +1,6 @@
-#ifndef FIXED_H
-#define FIXED_H
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-#include <ostream>
 
 class Fixed {
 private:
