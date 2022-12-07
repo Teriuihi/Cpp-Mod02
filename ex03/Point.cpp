@@ -2,15 +2,15 @@
 #include "Point.hpp"
 
 Point::Point() {
-//	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Point::Point(float xf, float yf) : x(xf), y(yf) {
-//	std::cout << "Full constructor called" << std::endl;
+	std::cout << "Full constructor called" << std::endl;
 }
 
-Point::Point(const Point &point) : x(point.x), y(point.y){
-//	std::cout << "Copy constructor called" << std::endl;
+Point::Point(const Point &point) : x(point.x), y(point.y) {
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 const Fixed &Point::getX() const {
@@ -22,12 +22,12 @@ const Fixed &Point::getY() const {
 }
 
 Point Point::operator=(const Point &point) {
-//	std::cout << "Assignment overwrite called" << std::endl;
+	std::cout << "Assignment overwrite called" << std::endl;
 	return Point(point.x.toFloat(), point.y.toFloat());
 }
 
 Point::~Point() {
-//	std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 float Point::getXFloat() const {

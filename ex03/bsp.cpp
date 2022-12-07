@@ -1,33 +1,33 @@
 #include "Point.hpp"
+#include <cmath>
 
-bool pointOnLine(Point const loc, Point const p1, Point const p2) {
-	if (loc == p1 || loc == p2)
-		return true;
-	float dxc = loc.getXFloat() - p1.getXFloat();
-	float dyc = loc.getYFloat() - p1.getYFloat();
-	float dxl = p2.getXFloat() - p1.getXFloat();
-	float dyl = p2.getYFloat() - p1.getYFloat();
-	float cross = dxc * dyl - dyc * dxl;
-	if (cross != 0)
-		return true;
-	return false;
+/**
+ * @param a, b, c Corners of the triangle
+ * @return the area of a triangle from its 3 corners
+ */
+double triangle_area(const Point &a, const Point &b, const Point &c) {
+	return std::abs((a.getXFloat() * (b.getYFloat() - c.getYFloat())
+					 + b.getXFloat() * (c.getYFloat() - a.getYFloat()) +
+					 c.getXFloat() * (a.getYFloat() - b.getYFloat())) / 2.0);
 }
 
-float pointInside(Point const loc, Point const p1, Point const p2)
-{
-	if (pointOnLine(loc, p1, p2))
-		return -1;
-	return (loc.getXFloat() - p2.getXFloat()) *
-			(p1.getYFloat() - p2.getYFloat()) -
-			(p1.getXFloat() - p2.getXFloat()) *
-			(loc.getYFloat() - p2.getYFloat());
-}
+/**
+ * @param one, two, three Corners of the triangle
+ * @param point The point that we're checking the location for
+ * @return True if the point is inside the triangle, false if not
+ */
+bool bsp(const Point &one, const Point &two, const Point &three, const Point &point) {
+	// Calculate the total area of the triangle
+	double total_area = triangle_area(one, two, three);
 
-//TODO VERIFY THIS PLS TY
-bool bsp( Point const a, Point const b, Point const c, Point const point) {
-	float A1 = pointInside(point, a, b);
-	float A2 = pointInside(point, b, c);
-	float A3 = pointInside(point, c, a);
+	// Calculate the areas of the three smaller triangles formed by
+	// two points of the triangle and the point we're checking
+	double area1 = triangle_area(point, two, three);
+	double area2 = triangle_area(one, point, three);
+	double area3 = triangle_area(one, two, point);
 
-	return A1 == 0 && A2 == 0 && A3 == 0;
+	// If the sum of the areas of the three small triangles is equal to
+	// the area of the original triangle, then the point is inside
+	// the triangle. Otherwise, it is outside. We use 1e-9 to account for small rounding errors
+	return std::abs(total_area - (area1 + area2 + area3)) < 1e-9;
 }
