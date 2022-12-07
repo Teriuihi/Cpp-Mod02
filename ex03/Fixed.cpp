@@ -22,13 +22,13 @@ Fixed::~Fixed() {
 	//std::cout << "Destructor called" << std::endl;
 }
 
-Fixed& Fixed::operator=(const Fixed &fixed) {
+Fixed &Fixed::operator=(const Fixed &fixed) {
 	//std::cout << "Copy assignment operator called" << std::endl;
 	val = fixed.val;
 	return *this;
 }
 
-int Fixed::getRawBits( void ) const {
+int Fixed::getRawBits(void) const {
 	//std::cout << "getRawBits member function called" << std::endl;
 	return val;
 }
@@ -38,11 +38,11 @@ void Fixed::setRawBits(const int raw) {
 	val = raw;
 }
 
-float Fixed::toFloat( void ) const {
+float Fixed::toFloat(void) const {
 	return ((float) val / (float) (1 << b));
 }
 
-int Fixed::toInt( void ) const {
+int Fixed::toInt(void) const {
 	return val >> b;
 }
 
